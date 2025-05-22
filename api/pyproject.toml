@@ -1,0 +1,75 @@
+[project]
+name = "api"
+version = "0.1.0"
+description = ""
+authors = [{ name = "Olivier Picault", email = "olivier.picault@gmail.com" }]
+readme = "README.md"
+requires-python = ">=3.9,<4.0"
+dependencies = [
+    "pydantic (>=2.11.5,<3.0.0)",
+    "flask-migrate (>=4.1.0,<5.0.0)",
+    "psycopg2-binary (>=2.9.10,<3.0.0)",
+    "python-dotenv (>=1.1.0,<2.0.0)",
+    "flask-cors (>=6.0.0,<7.0.0)",
+    "ruff (>=0.11.11,<0.12.0)",
+    "ty (>=0.0.1a6,<0.0.2)",
+    "flask-sqlalchemy (>=3.1.1,<4.0.0)",
+    "flask (>=3.1.1,<4.0.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false
+
+[tool.ruff]
+line-length = 120
+lint.extend-select = [
+    "E",    # pycodestyle
+    "W",    # pycodestyle
+    "I",    # isort
+    "N",    # pep8-naming
+    "UP",   # pyupgrade
+    "S",    # flake8-bandit
+    "BLE",  # flake8-blind-except 
+    "FBT",  # flake8-boolean-trap
+    "B",    # flake8-bugbear
+    "A",    # flake8-builtins
+    "COM",  # flake8-commas
+    "C4",   # flake8-comprehensions
+    "T10",  # flake8-debugger
+    "LOG",  # flake8-logging
+    "G",    # flake8-logging-format
+    "T20",  # flake8-print
+    "PT",   # flake8-pytest
+    "Q",    # flake8-quotes
+    "RSE",  # flake8-raise
+    "RET",  # flake8-return
+    "SIM",  # flake8-simplify
+    "TID",  # flake8-tidy-imports
+    "ARG",  # flake8-unused-arguments
+    "TRY",  # tryceratops
+    "FURB", # refurb
+    "RUF",  # ruff
+]
+
+lint.ignore = [
+    "COM812", # missing-trailing-comma - as it might interfere with formatting
+    "Q000",   # bad-quotes-inline-string - as it might interfere with formatting
+    "Q003",   # avoidable-escaped-quote - as it might interfere with formatting
+    "RUF012", # mutable-class-default
+]
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+docstring-code-format = true
+
+[tool.ruff.lint.extend-per-file-ignores]
+"tests/*" = [
+    "S101", # bandit: assert
+    "S105", # bandit: hardcoded-password-string
+]
